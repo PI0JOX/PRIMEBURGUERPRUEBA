@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Burger - Menú Digital</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#FFC700',
+                            goldDark: '#D4A000',
+                            black: '#0D0D0D',
+                            cardBg: '#18181B',
+                            accent: '#FF4500'
+                        }
+                    },
+                    fontFamily: {
+                        oswald: ['Oswald', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0B0B0C;
+            color: #F3F4F6;
+        }
+        .title-font {
+            font-family: 'Oswald', sans-serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF099 0%, #FFC700 50%, #D4A000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-glow {
+            box-shadow: 0 0 15px rgba(255, 199, 0, 0.15);
+        }
+        .pulse-whatsapp {
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-24 flex flex-col justify-between">
+
+    <!-- Header / Branding -->
+    <header class="relative bg-gradient-to-b from-black via-zinc-900 to-transparent pt-8 pb-6 px-4 text-center border-b border-amber-500/20">
+        <div class="max-w-3xl mx-auto flex flex-col items-center">
+            <!-- Logo emblem badge -->
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-black border-2 border-brand-gold flex flex-col items-center justify-center p-2 mb-3 shadow-lg shadow-amber-500/10 gold-border-glow">
+                <i class="fa-solid font-bold fa-hamburger text-3xl sm:text-4xl text-brand-gold mb-1"></i>
+                <span class="title-font text-xl sm:text-2xl font-bold tracking-wider leading-none text-white">PRIME</span>
+                <span class="text-[9px] tracking-widest text-brand-gold font-bold">BURGER</span>
+            </div>
+
+            <h1 class="title-font text-4xl sm:text-5xl font-bold tracking-wide uppercase gold-gradient-text mt-1">
+                PRIME BURGER
+            </h1>
+            <p class="text-amber-400/90 text-xs sm:text-sm font-semibold tracking-widest uppercase mt-1">
+                <i class="fa-solid fa-star text-xs mr-1"></i> Sabor de otro nivel <i class="fa-solid fa-star text-xs ml-1"></i>
+            </p>
+        </div>
+    </header>
+
+    <!-- Content Container -->
+    <main class="max-w-4xl mx-auto px-4 mt-6 w-full flex-grow">
+
+        <!-- Categorías (Filtros) -->
+        <div class="flex items-center justify-center gap-2 mb-8 overflow-x-auto py-2 no-scrollbar">
+            <button onclick="filterCategory('all')" id="btn-all" class="cat-btn active px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 bg-brand-gold text-black shadow-md shadow-amber-500/20">
+                <i class="fa-solid fa-utensils mr-1.5"></i> Todos
+            </button>
+            <button onclick="filterCategory('alitas')" id="btn-alitas" class="cat-btn px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 bg-zinc-800 text-gray-300 hover:bg-zinc-700 border border-zinc-700">
+                <i class="fa-solid fa-drumstick-bite mr-1.5"></i> Alitas
+            </button>
+            <button onclick="filterCategory('hamburguesas')" id="btn-hamburguesas" class="cat-btn px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 bg-zinc-800 text-gray-300 hover:bg-zinc-700 border border-zinc-700">
+                <i class="fa-solid fa-burger mr-1.5"></i> Hamburguesas
+            </button>
+            <button onclick="filterCategory('salchipapas')" id="btn-salchipapas" class="cat-btn px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 bg-zinc-800 text-gray-300 hover:bg-zinc-700 border border-zinc-700">
+                <i class="fa-solid fa-bowl-food mr-1.5"></i> Salchipapas
+            </button>
+        </div>
+
+        <!-- SECCIÓN: ALITAS -->
+        <section id="sec-alitas" class="menu-section mb-10">
+            <div class="flex items-center gap-3 mb-5 border-b border-zinc-800 pb-2">
+                <i class="fa-solid fa-drumstick-bite text-brand-gold text-2xl"></i>
+                <h2 class="title-font text-2xl sm:text-3xl font-bold tracking-wider uppercase text-white">ALITAS</h2>
+                <span class="text-xs bg-amber-500/10 text-brand-gold px-2.5 py-1 rounded-full border border-amber-500/30 ml-auto">Incluyen Papas Fritas</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Alitas BBQ -->
+                <div class="bg-brand-cardBg border border-zinc-800 hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h3 class="title-font text-xl font-bold text-white tracking-wide">ALITAS BBQ</h3>
+                            <span class="text-brand-gold font-bold text-lg whitespace-nowrap">S/ 20.90</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            8 Alitas bañadas en jugosa salsa BBQ + papas fritas crujientes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Alitas Acevichadas -->
+                <div class="bg-brand-cardBg border border-zinc-800 hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h3 class="title-font text-xl font-bold text-white tracking-wide">ALITAS ACEVICHADAS</h3>
+                            <span class="text-brand-gold font-bold text-lg whitespace-nowrap">S/ 20.90</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            8 Alitas bañadas en deliciosa salsa acevichada + papas fritas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Alitas Búfalo -->
+                <div class="bg-brand-cardBg border border-zinc-800 hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h3 class="title-font text-xl font-bold text-white tracking-wide">ALITAS BÚFALO</h3>
+                            <span class="text-brand-gold font-bold text-lg whitespace-nowrap">S/ 20.90</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            8 Alitas bañadas en salsa búfalo con el toque picante perfecto + papas fritas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Alitas Broaster -->
+                <div class="bg-brand-cardBg border border-zinc-800 hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h3 class="title-font text-xl font-bold text-white tracking-wide">ALITAS BROASTER</h3>
+                            <span class="text-brand-gold font-bold text-lg whitespace-nowrap">S/ 20.90</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            8 Alitas crujientes estilo broaster + papas fritas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: HAMBURGUESAS -->
+        <section id="sec-hamburguesas" class="menu-section mb-10">
+            <div class="flex items-center gap-3 mb-5 border-b border-zinc-800 pb-2">
+                <i class="fa-solid fa-burger text-brand-gold text-2xl"></i>
+                <h2 class="title-font text-2xl sm:text-3xl font-bold tracking-wider uppercase text-white">HAMBURGUESAS</h2>
+            </div>
+
+            <!-- Hamburguesa Clásica -->
+            <div class="bg-brand-cardBg border border-zinc-800 hover:border-amber-500/40 rounded-2xl p-5 mb-5 transition-all duration-300 hover:shadow-lg">
+                <div class="flex justify-between items-start gap-2 mb-2">
+                    <h3 class="title-font text-2xl font-bold text-white tracking-wide">HAMBURGUESA CLÁSICA</h3>
+                    <span class="text-brand-gold font-bold text-xl whitespace-nowrap">S/ 10.00</span>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed mb-3">
+                    Deliciosa hamburguesa con carne jugosa, queso cheddar fundido, ensalada de lechuga con tomate y nuestro toque especial, servida en un dorado pan con ajonjolí y papas fritas.
+                </p>
+            </div>
+
+            <!-- Adicionales Box -->
+            <div class="bg-zinc-900/80 border border-amber-500/20 rounded-2xl p-5">
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="fa-solid fa-plus-circle text-brand-gold"></i>
+                    <h3 class="title-font text-lg font-bold text-amber-400 tracking-wider uppercase">ADICIONALES</h3>
+                    <span class="text-xs bg-amber-400/10 text-brand-gold px-2 py-0.5 rounded border border-amber-500/20 ml-auto font-semibold">S/ 1.00 c/u</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm font-medium">
+                    <div class="bg-zinc-800/60 rounded-lg p-2.5 border border-zinc-700/50 flex items-center gap-2">
+                        <i class="fa-solid fa-egg text-amber-400 text-xs"></i>
+                        <span>Huevo frito</span>
+                    </div>
+                    <div class="bg-zinc-800/60 rounded-lg p-2.5 border border-zinc-700/50 flex items-center gap-2">
+                        <i class="fa-solid fa-bacon text-amber-400 text-xs"></i>
+                        <span>Tocino</span>
+                    </div>
+                    <div class="bg-zinc-800/60 rounded-lg p-2.5 border border-zinc-700/50 flex items-center gap-2">
+                        <i class="fa-solid fa-mortar-pestle text-amber-400 text-xs"></i>
+                        <span>Cebolla caramelizada</span>
+                    </div>
+                    <div class="bg-zinc-800/60 rounded-lg p-2.5 border border-zinc-700/50 flex items-center gap-2">
+                        <i class="fa-solid fa-utensils text-amber-400 text-xs"></i>
+                        <span>Plátano frito</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: SALCHIPAPAS -->
+        <section id="sec-salchipapas" class="menu-section mb-10">
+            <div class="flex items-center gap-3 mb-5 border-b border-zinc-800 pb-2">
+                <i class="fa-solid fa-bowl-food text-brand-gold text-2xl"></i>
+                <h2 class="title-font text-2xl sm:text-3xl font-bold tracking-wider uppercase text-white">SALCHIPAPAS</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Salchipapa Clásica -->
+                <div class="bg-brand-cardBg border border-zinc-800 hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h3 class="title-font text-xl font-bold text-white tracking-wide">SALCHIPAPA CLÁSICA</h3>
+                            <span class="text-brand-gold font-bold text-lg whitespace-nowrap">S/ 10.00</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Papas doradas, Hot dog crocante y variadas cremas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Salchipapa a lo Pobre -->
+                <div class="bg-brand-cardBg border border-zinc-800 hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h3 class="title-font text-xl font-bold text-white tracking-wide">SALCHIPAPA A LO POBRE</h3>
+                            <span class="text-brand-gold font-bold text-lg whitespace-nowrap">S/ 12.00</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Papas doradas, Hot dog, Huevo frito, plátanos fritos y cremas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Pedido Directo -->
+        <div class="bg-gradient-to-r from-amber-600/20 via-zinc-900 to-amber-600/20 border border-amber-500/30 rounded-2xl p-6 text-center my-8">
+            <h3 class="title-font text-2xl font-bold text-white mb-2">¿LISTO PARA PEDIR?</h3>
+            <p class="text-gray-300 text-sm mb-4">Haz tu pedido directamente por WhatsApp y te lo preparamos al instante.</p>
+            <a href="https://wa.me/51918526479?text=Hola,%20prime%20burger,%20quiero%20hacer%20un%20pedido." target="_blank" class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-full transition-all duration-300 shadow-lg shadow-green-500/30 text-base">
+                <i class="fa-brands fa-whatsapp text-xl"></i> HACER PEDIDO AHORA
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 border-t border-zinc-800 text-zinc-500 text-xs px-4">
+        <p class="mb-1">© PRIME BURGER - Sabor de otro nivel</p>
+        <p class="text-zinc-600">Atención rápida por WhatsApp: 918 526 479 / 955 012 676</p>
+    </footer>
+
+    <!-- Botón Flotante WhatsApp -->
+    <a href="https://wa.me/51918526479?text=Hola,%20prime%20burger,%20quiero%20hacer%20un%20pedido." 
+       target="_blank" 
+       aria-label="Pedir por WhatsApp"
+       class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white font-bold p-4 rounded-full shadow-2xl flex items-center justify-center z-50 transition-all duration-300 hover:scale-110 pulse-whatsapp">
+        <i class="fa-brands fa-whatsapp text-3xl sm:text-4xl"></i>
+    </a>
+
+    <!-- Filtering Logic Script -->
+    <script>
+        function filterCategory(category) {
+            const sections = document.querySelectorAll('.menu-section');
+            const buttons = document.querySelectorAll('.cat-btn');
+
+            // Actualizar botones de categoría
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-gold', 'text-black', 'shadow-md', 'shadow-amber-500/20');
+                btn.classList.add('bg-zinc-800', 'text-gray-300', 'hover:bg-zinc-700', 'border', 'border-zinc-700');
+            });
+
+            const activeBtn = document.getElementById(`btn-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-zinc-800', 'text-gray-300', 'hover:bg-zinc-700', 'border', 'border-zinc-700');
+                activeBtn.classList.add('bg-brand-gold', 'text-black', 'shadow-md', 'shadow-amber-500/20');
+            }
+
+            // Filtrar secciones del menú
+            sections.forEach(section => {
+                if (category === 'all') {
+                    section.style.display = 'block';
+                } else {
+                    if (section.id === `sec-${category}`) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
